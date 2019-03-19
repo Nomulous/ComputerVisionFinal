@@ -45,7 +45,7 @@
 
 ## Credits
 
-- [Martin Tuzim](https://github.com/nomulous)
+- [Martin Tuzim](https://github.com/nomulous) - Code
 
 ---
 
