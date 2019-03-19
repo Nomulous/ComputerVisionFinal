@@ -43,6 +43,17 @@
 
 ---
 
+## Image by Image Steps
+
+- Image 1
+![Img1](https://github.com/Nomulous/ComputerVisionFinal/blob/master/files/goldengate-00.png)
+- Image 2
+![Img2](https://github.com/Nomulous/ComputerVisionFinal/blob/master/files/goldengate-01.png)
+- Matches ![Matches](https://github.com/Nomulous/ComputerVisionFinal/blob/master/matches.png)
+- Stitched ![Stitched](https://github.com/Nomulous/ComputerVisionFinal/blob/master/goldengate-00_2_pano.png)
+
+---
+
 ## Credits
 
 - [Martin Tuzim](https://github.com/nomulous) - Code
