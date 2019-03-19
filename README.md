@@ -20,13 +20,26 @@
 
 ## Explanation
 
-    We take a row of images from img_0 to img_n. We find the middle index and image then preprocess the data into two lists. A left side and right side. For the left side, we find and computer features using SIFT and BF. We inverse the homography so we can run homography on the left side towards the center. After that is completed, we do normal homography and pass right side images into the half constructed panorama which causes lag and slowdown of the system. We substitute this by using CUDA to speed up the math and stitching. 
+    We take a row of images from img_0 to img_n. We find the middle index and image
+    then preprocess the data into two lists. A left side and right side. For the left
+    side, we find and computer features using SIFT and BF. We inverse the homography
+    so we can run homography on the left side towards the center. After that is
+    completed, we do normal homography and pass right side images into the half
+    constructed panorama which causes lag and slowdown of the system. We substitute
+    this by using CUDA to speed up the math and stitching.
 
 ---
 
 ## Constraints
 
-    The main constraint of this system is having "multirow" images. This program works perfectly fine for images that are in a straight line, assuming there is not an overload of images and not enough RAM. The second constraint as hinted is RAM and GPU constraints. As openCV2/Numpy matrices cannot be greater than something around 37,xxx on my laptop, if there are too many images we cannot load it into ram. GPUs on the other hand is so we can use CUDA to speed up stitching via the right hand side. We run all the math and comparisons to the GPU which speeds it up by a factor of 15-25 on average.
+    The main constraint of this system is having "multirow" images. This program
+    works perfectly fine for images that are in a straight line, assuming there is
+    not an overload of images and not enough RAM. The second constraint as hinted is
+    RAM and GPU constraints. As openCV2/Numpy matrices cannot be greater than
+    something around 37,xxx on my laptop, if there are too many images we cannot load
+    it into ram. GPUs on the other hand is so we can use CUDA to speed up stitching
+    via the right hand side. We run all the math and comparisons to the GPU
+    which speeds it up by a factor of 15-25 on average.
 
 ---
 
