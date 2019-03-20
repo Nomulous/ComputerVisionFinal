@@ -62,11 +62,12 @@
 
 ## Sample Images
 
-![Rio](https://github.com/Nomulous/ComputerVisionFinal/blob/master/rio-00_pano.png)
+![GoldenGate](https://github.com/Nomulous/ComputerVisionFinal/blob/master/img/goldengat-00_pano.png)
 
-![Lunch Room](https://github.com/Nomulous/ComputerVisionFinal/blob/master/img01_pano.png)
+![Rio](https://github.com/Nomulous/ComputerVisionFinal/blob/master/img/rio-00_pano.png)
 
-![Half Dome](https://github.com/Nomulous/ComputerVisionFinal/blob/master/halfdome-00_pano.png)
+![Lunch Room](https://github.com/Nomulous/ComputerVisionFinal/blob/master/img/img01_pano.png)
 
-![Diamond Head](https://github.com/Nomulous/ComputerVisionFinal/blob/master/diamondhead-00_pano.png)
+![Half Dome](https://github.com/Nomulous/ComputerVisionFinal/blob/master/img/halfdome-00_pano.png)
 
+![Diamond Head](https://github.com/Nomulous/ComputerVisionFinal/blob/master/img/diamondhead-00_pano.png)
