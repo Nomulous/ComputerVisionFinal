@@ -49,8 +49,8 @@
 ![Img1](https://github.com/Nomulous/ComputerVisionFinal/blob/master/files/goldengate-00.png)
 - Image 2
 ![Img2](https://github.com/Nomulous/ComputerVisionFinal/blob/master/files/goldengate-01.png)
-- Matches ![Matches](https://github.com/Nomulous/ComputerVisionFinal/blob/master/matches.png)
-- Stitched ![Stitched](https://github.com/Nomulous/ComputerVisionFinal/blob/master/goldengate-00_2_pano.png)
+- Matches ![Matches](https://github.com/Nomulous/ComputerVisionFinal/blob/master/img/matches.png)
+- Stitched ![Stitched](https://github.com/Nomulous/ComputerVisionFinal/blob/master/img/goldengate-00_2_pano.png)
 
 ---
 
@@ -62,7 +62,7 @@
 
 ## Sample Images
 
-![GoldenGate](https://github.com/Nomulous/ComputerVisionFinal/blob/master/img/goldengat-00_pano.png)
+![GoldenGate](https://github.com/Nomulous/ComputerVisionFinal/blob/master/img/goldengate-00_pano.png)
 
 ![Rio](https://github.com/Nomulous/ComputerVisionFinal/blob/master/img/rio-00_pano.png)
 
