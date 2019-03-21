@@ -22,7 +22,7 @@
 
     We take a row of images from img_0 to img_n. We find the middle index and image
     then preprocess the data into two lists. A left side and right side. For the left
-    side, we find and computer features using SIFT and BF. We inverse the homography
+    side, we find and computer features using SURF and BF. We inverse the homography
     so we can run homography on the left side towards the center. After that is
     completed, we do normal homography and pass right side images into the half
     constructed panorama which causes lag and slowdown of the system. We substitute
