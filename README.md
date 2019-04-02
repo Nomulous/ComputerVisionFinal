@@ -30,19 +30,6 @@
 
 ---
 
-## Constraints
-
-    The main constraint of this system is having "multirow" images. This program
-    works perfectly fine for images that are in a straight line, assuming there is
-    not an overload of images and not enough RAM. The second constraint as hinted is
-    RAM and GPU constraints. As openCV2/Numpy matrices cannot be greater than
-    something around 37,xxx on my laptop, if there are too many images we cannot load
-    it into ram. GPUs on the other hand is so we can use CUDA to speed up stitching
-    via the right hand side. We run all the math and comparisons to the GPU
-    which speeds it up by a factor of 15-25 on average.
-
----
-
 ## Image by Image Steps
 
 - Image 1

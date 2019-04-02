@@ -12,10 +12,6 @@ import imutils
 
 from tqdm import tqdm
 
-# CUDA
-from numba import vectorize
-from numba import *
-
 # Ignoring warnings
 import warnings
 warnings.filterwarnings('ignore')
@@ -53,24 +49,6 @@ def match(img1, img2, conf=0.7, mingood=4):
     else:
         return "err"
 
-#@nb.vectorize(['uint8(uint8, uint8)'], target='cuda')
-@jit(nopython=True)
-def mix_and_match(currImg, newImg):
-    y1, x1 = currImg.shape[:2]
-    for i in range(0, x1):
-        for j in range(0, y1):
-            if (currImg[j,i] == np.array([0,0,0])).all() and  (newImg[j,i] == np.array([0,0,0])).all():
-                newImg[j,i] = [0, 0, 0]
-            else:
-                if (newImg[j,i] == np.array([0,0,0])).all():
-                    newImg[j,i] = currImg[j,i]
-                else:
-                    if not (currImg[j,i] ==  np.array([0,0,0])).all():
-                        bw, gw, rw = newImg[j,i]
-                        bl,gl,rl = currImg[j,i]
-                        newImg[j, i] = [bl,gl,rl]
-    return newImg
-
 def main(path, debug=False, crop=False, extension=""):
     # Read images
     print("Reading Images")
@@ -104,16 +82,15 @@ def main(path, debug=False, crop=False, extension=""):
             continue
         iH = np.linalg.inv(H)
 
-        # TODO: Find the variable names
-        f1 = np.dot(iH, np.array([0, 0, 1]))
-        f1 = f1/f1[-1]
+        f = np.dot(iH, np.array([0, 0, 1]))
+        f = f/f[-1]
 
-        iH[0][-1] += abs(f1[0])
-        iH[1][-1] += abs(f1[1])
+        iH[0][-1] += abs(f[0])
+        iH[1][-1] += abs(f[1])
 
         ds = np.dot(iH, np.array([currPano.shape[1], currPano.shape[0],1]))
-        offset_y = abs(int(f1[1]))
-        offset_x = abs(int(f1[0]))
+        offset_y = abs(int(f[1]))
+        offset_x = abs(int(f[0]))
 
         dsize = (int(ds[0]) + offset_x, int(ds[1]) + offset_y)
         tmp = cv2.warpPerspective(currPano, iH, dsize)
@@ -121,7 +98,7 @@ def main(path, debug=False, crop=False, extension=""):
         currPano = tmp
 
         if debug:
-            showImg(currPano)
+            showImg(currPano, "Debug")
     
 
     
@@ -130,19 +107,25 @@ def main(path, debug=False, crop=False, extension=""):
 
     for img in tqdm(right_imgs):
         H = match(currPano, img)
-        
-        ds = np.dot(H, np.array([img.shape[1], img.shape[0],1]))
-        ds = ds/ds[-1]
 
-        dsize = (int(ds[0]) + currPano.shape[1], int(ds[1]) + currPano.shape[0])
-        tmp = cv2.warpPerspective(img, H, dsize)
+        #print(H)
+        if H == "err":
+            continue
+        tmp = cv2.warpPerspective(img, H, (currPano.shape[1] + img.shape[1], currPano.shape[0]), borderMode=cv2.BORDER_TRANSPARENT)
 
-        #print("Passing to gpu")
-        tmp = mix_and_match(currPano, tmp)
-        currPano = tmp
+        mask = np.zeros((tmp.shape[0], tmp.shape[1], 3), dtype="uint8")
+        mask[0 : currPano.shape[0], 0 : currPano.shape[1]] = currPano
 
+        right = np.nonzero(
+                (np.sum(tmp, 2) != 0) * (np.sum(mask, 2) == 0)
+        )
+
+        mask[right] = tmp[right]
+        currPano = mask
+
+         
         if debug:
-            showImg(currPano)
+            showImg(currPano, "Debug")
     
     if crop:
         # Crop the image to look nice
